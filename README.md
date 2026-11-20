@@ -56,3 +56,18 @@ The script prints `Recording... Press Enter to stop.`. Speak in any supported la
 - Language detection only maps 8 codes. If the detector returns a code outside this list (for example `it`), the lookup used for translation raises a `ValueError`. Extend `language_map` to avoid this.
 - The recording length is set by the Enter key, not a fixed duration; `ReadMe.txt` mentions a 10-second recording, which the current code does not do.
 - Audio is recorded at 16 kHz, mono, 16-bit.
+
+## Pretrained models (not included)
+
+This repository does not include the XLM-RoBERTa language-detection model because it is a pretrained model that can be downloaded directly:
+
+- **XLM-RoBERTa** (`papluca/xlm-roberta-base-language-detection`): https://huggingface.co/papluca/xlm-roberta-base-language-detection
+
+Download it with `transformers` and place it in the `models/` folder (or load it by its Hugging Face name):
+
+```python
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
+name = "papluca/xlm-roberta-base-language-detection"
+tokenizer = AutoTokenizer.from_pretrained(name)
+model = AutoModelForSequenceClassification.from_pretrained(name)
+```
